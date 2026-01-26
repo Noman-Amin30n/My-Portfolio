@@ -1,26 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap");
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "./swiper-custom.css";
+
+/* 
+  Variable-First Theming Approach 
+  We define our core tokens as plain CSS variables in :root and .dark.
+  This ensures that Tailwind's utilities ALWAYS use var() and 
+  remain reactive to the .dark class on the <html> element.
+*/
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --radius: 1rem;
+  
+  /* Core Design Tokens */
+  --pk-primary: #ff6b35;
+  --pk-primary-light: #ff8c5a;
+  --pk-primary-dark: #e55527;
+  
+  --pk-cream: #fff5e4;
+  --pk-peach: #ffe5d9;
+  --pk-lavender: #e8e4f3;
+  --pk-navy: #1a1f3d;
+  --pk-slate: #334155;
+  --pk-slate-light: #475569;
+
+  /* Semantic Variables */
+  --pk-background: #fff5e4;
+  --pk-foreground: #1a1f3d;
+  --pk-card: #ffffff;
+  --pk-card-foreground: #1a1f3d;
+  --pk-secondary: #ffe5d9;
+  --pk-secondary-foreground: #1a1f3d;
+  --pk-muted: #f1f5f9;
+  --pk-muted-foreground: #64748b;
+  --pk-accent: #ffe5d9;
+  --pk-accent-foreground: #1a1f3d;
+  --pk-border: #e2e8f0;
+  --pk-input: #e2e8f0;
+  --pk-ring: #ff6b35;
+
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.5rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  /* Redefine Semantic Variables for Dark Mode */
+  --pk-background: #020617;
+  --pk-foreground: #f8fafc;
+  --pk-card: #1e293b;
+  --pk-card-foreground: #f8fafc;
+  --pk-secondary: #1e293b;
+  --pk-secondary-foreground: #f8fafc;
+  --pk-muted: #1e293b;
+  --pk-muted-foreground: #94a3b8;
+  --pk-accent: #1e293b;
+  --pk-accent-foreground: #f8fafc;
+  --pk-border: #1e293b;
+  --pk-input: #1e293b;
+  
+  /* Redefine Design Tokens that change in dark mode */
+  --pk-cream: #0f172a;
+  --pk-peach: #1e293b;
+  --pk-lavender: #1e293b;
+  --pk-navy: #f8fafc;
+  --pk-slate: #f1f5f9;
+  --pk-slate-light: #94a3b8;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  /* Map Tailwind names to our CSS variables */
+  --color-primary: var(--pk-primary);
+  --color-primary-light: var(--pk-primary-light);
+  --color-primary-dark: var(--pk-primary-dark);
+  
+  --color-cream: var(--pk-cream);
+  --color-peach: var(--pk-peach);
+  --color-lavender: var(--pk-lavender);
+  --color-navy: var(--pk-navy);
+  --color-slate: var(--pk-slate);
+  --color-slate-light: var(--pk-slate-light);
+
+  --color-background: var(--pk-background);
+  --color-foreground: var(--pk-foreground);
+  --color-card: var(--pk-card);
+  --color-card-foreground: var(--pk-card-foreground);
+  --color-secondary: var(--pk-secondary);
+  --color-secondary-foreground: var(--pk-secondary-foreground);
+  --color-muted: var(--pk-muted);
+  --color-muted-foreground: var(--pk-muted-foreground);
+  --color-accent: var(--pk-accent);
+  --color-accent-foreground: var(--pk-accent-foreground);
+  --color-border: var(--pk-border);
+  --color-input: var(--pk-input);
+  --color-ring: var(--pk-ring);
+
+  --font-heading: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased transition-colors duration-300;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply transition-colors duration-300;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .shadow-soft {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  }
+  .dark .shadow-soft {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  .shadow-float {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  }
+  .dark .shadow-float {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Gradient Backgrounds - Using our CSS variables directly for responsiveness */
+  .bg-gradient-hero {
+    background: linear-gradient(135deg, var(--pk-cream) 0%, var(--pk-peach) 50%, var(--pk-lavender) 100%);
+    @apply transition-all duration-500;
+  }
+
+  .bg-gradient-peach {
+    background: linear-gradient(135deg, var(--pk-peach) 0%, var(--pk-cream) 100%);
+    @apply transition-all duration-500;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: var(--pk-primary);
+  color: white;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

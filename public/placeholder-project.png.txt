@@ -1,0 +1,5 @@
+# Placeholder image for projects without images
+# This is a simple placeholder - you should replace with actual project screenshots
+
+This file serves as a placeholder for projects that don't have images yet.
+Place your project images in the /public directory.

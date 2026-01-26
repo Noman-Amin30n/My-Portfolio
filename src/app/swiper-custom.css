@@ -1,0 +1,51 @@
+/* Swiper customization for project cards */
+.project-swiper {
+  --swiper-navigation-size: 30px;
+  --swiper-navigation-color: #FF6B35;
+  --swiper-pagination-color: #FF6B35;
+  --swiper-pagination-bullet-inactive-color: #FFF;
+  --swiper-pagination-bullet-inactive-opacity: 0.5;
+}
+
+.project-swiper .swiper-button-prev,
+.project-swiper .swiper-button-next {
+  background: rgba(255, 255, 255, 0.9);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-swiper:hover .swiper-button-prev,
+.project-swiper:hover .swiper-button-next {
+  opacity: 1;
+}
+
+.project-swiper .swiper-button-prev:after,
+.project-swiper .swiper-button-next:after {
+  font-size: 12px !important;
+  font-weight: bold;
+}
+
+.project-swiper .swiper-navigation-icon {
+    width: 24px;
+    height: 24px;
+    font-weight: bold;
+}
+
+.project-swiper .swiper-pagination {
+  bottom: 10px;
+}
+
+.project-swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: white;
+  opacity: 0.7;
+}
+
+.project-swiper .swiper-pagination-bullet-active {
+  background: var(--swiper-pagination-color);
+  opacity: 1;
+}
