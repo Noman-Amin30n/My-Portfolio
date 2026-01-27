@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/theme-context";
+import { Toaster } from "@/components/ui/sonner";
+import SplashCursor from "@/components/react-bits/SplashCursor";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -80,7 +82,16 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <SplashCursor
+            color="#ff6b35"
+            size={15}
+            splashCount={12}
+            splashDuration={500}
+          />
+          {children}
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

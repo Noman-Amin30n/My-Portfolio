@@ -12,12 +12,12 @@
 
 :root {
   --radius: 1rem;
-  
+
   /* Core Design Tokens */
   --pk-primary: #ff6b35;
   --pk-primary-light: #ff8c5a;
   --pk-primary-dark: #e55527;
-  
+
   --pk-cream: #fff5e4;
   --pk-peach: #ffe5d9;
   --pk-lavender: #e8e4f3;
@@ -60,7 +60,7 @@
   --pk-accent-foreground: #f8fafc;
   --pk-border: #1e293b;
   --pk-input: #1e293b;
-  
+
   /* Redefine Design Tokens that change in dark mode */
   --pk-cream: #0f172a;
   --pk-peach: #1e293b;
@@ -75,7 +75,7 @@
   --color-primary: var(--pk-primary);
   --color-primary-light: var(--pk-primary-light);
   --color-primary-dark: var(--pk-primary-dark);
-  
+
   --color-cream: var(--pk-cream);
   --color-peach: var(--pk-peach);
   --color-lavender: var(--pk-lavender);
@@ -116,7 +116,12 @@
     font-family: var(--font-body);
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply transition-colors duration-300;
     font-family: var(--font-heading);
     font-weight: 700;
@@ -141,12 +146,21 @@
 
   /* Gradient Backgrounds - Using our CSS variables directly for responsiveness */
   .bg-gradient-hero {
-    background: linear-gradient(135deg, var(--pk-cream) 0%, var(--pk-peach) 50%, var(--pk-lavender) 100%);
+    background: linear-gradient(
+      135deg,
+      var(--pk-cream) 0%,
+      var(--pk-peach) 50%,
+      var(--pk-lavender) 100%
+    );
     @apply transition-all duration-500;
   }
 
   .bg-gradient-peach {
-    background: linear-gradient(135deg, var(--pk-peach) 0%, var(--pk-cream) 100%);
+    background: linear-gradient(
+      135deg,
+      var(--pk-peach) 0%,
+      var(--pk-cream) 100%
+    );
     @apply transition-all duration-500;
   }
 }
@@ -161,10 +175,52 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+@keyframes star-movement-bottom {
+  0% {
+    transform: translate(0%, 0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-100%, 0%);
+    opacity: 0;
+  }
+}
+
+@keyframes star-movement-top {
+  0% {
+    transform: translate(0%, 0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(100%, 0%);
+    opacity: 0;
+  }
+}
+
+@keyframes star-movement {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-star-movement {
+  animation: star-movement linear infinite;
+}
+
+@keyframes shine {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }

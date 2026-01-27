@@ -8,27 +8,37 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import MagneticButton from "@/components/buttons/MagneticButton";
 import { personalInfo } from "@/data/personal";
+import DotGrid from "@/components/react-bits/DotGrid";
+import RotatingText from "@/components/react-bits/RotatingText";
 
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center bg-gradient-hero overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <DotGrid
+          color="#a0aec0"
+          gridSize={40}
+          gap={25}
+          dotSize={1.5}
+          fadeDistance={250}
+          className="opacity-40"
+        />
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 0.1, scale: 1 }}
           transition={{ duration: 1 }}
-          className="absolute top-20 right-20 w-64 h-64 bg-primary rounded-full blur-3xl"
+          className="absolute top-20 right-20 w-64 h-64 bg-primary rounded-full blur-3xl z-0"
         />
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 0.1, scale: 1 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="absolute bottom-20 left-20 w-80 h-80 bg-lavender rounded-full blur-3xl"
+          className="absolute bottom-20 left-20 w-80 h-80 bg-lavender rounded-full blur-3xl z-0"
         />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-32">
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-32 z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-8">
@@ -57,9 +67,19 @@ export default function HeroSection() {
                   {personalInfo.name}
                 </span>
               </h1>
-              <p className="text-2xl md:text-3xl font-semibold text-slate">
-                {personalInfo.role}
-              </p>
+              <div className="text-2xl md:text-3xl font-semibold text-slate flex items-center gap-2">
+                <span>I am a</span>
+                <RotatingText
+                  items={[
+                    "Frontend Developer",
+                    "UI/UX Designer",
+                    "Creative Thinker",
+                    "Problem Solver",
+                  ]}
+                  interval={2500}
+                  className="text-primary font-bold"
+                />
+              </div>
             </motion.div>
 
             {/* Description */}
@@ -125,7 +145,7 @@ export default function HeroSection() {
               <div className="relative z-10 w-[400px] h-[400px] mx-auto">
                 <div className="flex items-end w-full h-full rounded-3xl bg-gradient-to-br from-primary/20 to-lavender/30 backdrop-blur-sm shadow-float">
                   <Image
-                    src="/images/person.png" // User will update this manually
+                    src="/images/hero-bg-2.png" // User will update this manually
                     alt={personalInfo.name}
                     width={500}
                     height={500}

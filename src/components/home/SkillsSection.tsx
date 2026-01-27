@@ -4,6 +4,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { skills, skillCategories } from "@/data/skills";
 import { Sparkles } from "lucide-react";
+import ShinyText from "@/components/react-bits/ShinyText";
+import StarBorder from "@/components/react-bits/StarBorder";
 
 export default function SkillsSection() {
   const categories = Object.entries(skillCategories);
@@ -25,14 +27,22 @@ export default function SkillsSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card/80 backdrop-blur-sm shadow-soft mb-6 border border-border/50">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-xs font-bold text-navy uppercase tracking-wider">
-              Tech Stack
-            </span>
+          <div className="inline-block mb-6">
+            <StarBorder
+              color="var(--pk-primary)"
+              className="rounded-full p-0! bg-card/80! backdrop-blur-sm"
+            >
+              <div className="flex items-center gap-2 px-4 py-2">
+                <Sparkles className="w-4 h-4 text-primary" />
+                <span className="text-xs font-bold text-navy uppercase tracking-wider">
+                  Tech Stack
+                </span>
+              </div>
+            </StarBorder>
           </div>
           <h2 className="text-5xl md:text-6xl font-bold text-navy mb-4">
-            Skills & <span className="text-primary">Technologies</span>
+            Skills &{" "}
+            <ShinyText text="Technologies" className="text-primary" speed={3} />
           </h2>
           <p className="text-lg text-slate-light max-w-2xl mx-auto">
             A comprehensive toolkit of modern technologies and frameworks I use

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { getFeaturedProjects } from "@/data/projects";
 import { ExternalLink } from "lucide-react";
 import ProjectCard from "@/components/projects/ProjectCard";
+import ScrollReveal from "@/components/react-bits/ScrollReveal";
 
 export default function ProjectsSection() {
   const featuredProjects = getFeaturedProjects();
@@ -15,13 +16,7 @@ export default function ProjectsSection() {
     <section className="py-24 bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
+        <ScrollReveal direction="up" className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             Recent <span className="text-primary">Projects</span>
           </h2>
@@ -29,7 +24,7 @@ export default function ProjectsSection() {
             Explore some of my latest work showcasing modern web development, AI
             integration, and beautiful user experiences.
           </p>
-        </motion.div>
+        </ScrollReveal>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
