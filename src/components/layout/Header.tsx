@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -51,9 +52,14 @@ export default function Header() {
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
-              {personalInfo.name.split(" ")[0]}
-            </span>
+            <Image
+              src="/images/logo.png"
+              alt={personalInfo.name.split(" ")[0]}
+              width={140}
+              height={40}
+              className="h-10 w-auto object-contain"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -107,33 +113,73 @@ export default function Header() {
       </nav>
 
       {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden">
-          <div className="fixed inset-0 top-20 bg-background/95 backdrop-blur-md px-6 py-8 animate-in fade-in slide-in-from-top-5 duration-200">
-            <div className="flex flex-col gap-6">
+      <div
+        className={cn(
+          "fixed right-0 top-0 h-screen w-full z-50 md:hidden transition-all duration-300 ease-in-out",
+          mobileMenuOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none",
+        )}
+      >
+        {/* Backdrop overlay */}
+        <div
+          className="absolute left-0 top-0 h-screen w-full bg-background/80 transition-all duration-200"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+
+        {/* Menu content */}
+        <div
+          className={cn(
+            "absolute right-0 top-0 bottom-0 w-[280px] bg-background shadow-2xl transition-all duration-200 ease-in-out",
+            mobileMenuOpen ? "translate-x-0" : "translate-x-full",
+          )}
+        >
+          <div className="flex flex-col h-full p-6">
+            <div className="flex items-center justify-between mb-8">
+              <span className="text-xl font-bold bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
+                MNA
+              </span>
+              <div className="flex items-center gap-2">
+                <ThemeToggle />
+                <button
+                  type="button"
+                  className="p-2 rounded-lg hover:bg-primary/10 transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-label="Close menu"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+            </div>
+
+            <nav className="flex flex-col gap-4">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className={cn(
-                    "text-xl font-semibold transition-colors hover:text-primary",
-                    pathname === item.href ? "text-primary" : "text-foreground",
+                    "text-lg font-semibold py-2 px-4 rounded-xl transition-all duration-200",
+                    pathname === item.href
+                      ? "bg-primary/10 text-primary"
+                      : "text-foreground hover:bg-primary/5 hover:text-primary",
                   )}
                 >
                   {item.name}
                 </Link>
               ))}
+            </nav>
+
+            <div className="mt-auto pt-6 border-t border-border">
               <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                <Button className="w-full mt-4">Hire Me</Button>
+                <Button className="w-full py-6 text-lg rounded-xl">
+                  Hire Me
+                </Button>
               </Link>
-              <div className="flex justify-center mt-4">
-                <ThemeToggle />
-              </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }

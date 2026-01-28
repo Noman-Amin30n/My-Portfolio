@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   Github,
   Linkedin,
@@ -33,9 +34,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand Column */}
           <div>
-            <h3 className="text-2xl font-bold mb-4 bg-linear-to-r from-primary to-primary-light bg-clip-text text-transparent">
-              {personalInfo.name.split(" ")[0]}
-            </h3>
+            <Link href="/" className="inline-block mb-4">
+              <Image
+                src="/images/logo.png"
+                alt={personalInfo.name.split(" ")[0]}
+                width={140}
+                height={40}
+                className="h-10 w-auto object-contain"
+              />
+            </Link>
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
               {personalInfo.role}
             </p>
