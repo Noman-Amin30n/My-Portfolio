@@ -29,8 +29,8 @@ export async function POST(req: NextRequest) {
     });
 
     // Email to yourself
-    await transporter.sendMail({
-      from: process.env.SMTP_USER || "noreply@portfolio.com",
+    const info = await transporter.sendMail({
+      from: `Noman Ameen <${process.env.SMTP_USER_EMAIL}>`,
       to: process.env.CONTACT_EMAIL || "nomankhan30n@gmail.com",
       subject: `Portfolio Contact: ${validatedData.subject}`,
       html: `
@@ -59,6 +59,8 @@ Message:
 ${validatedData.message}
       `,
     });
+
+    console.log("Email sent successfully", info);
 
     return NextResponse.json(
       { message: "Email sent successfully" },

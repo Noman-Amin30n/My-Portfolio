@@ -80,12 +80,16 @@ export default function ContactInfo() {
               <a
                 key={social.platform}
                 href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={social.platform === "Email" ? undefined : "_blank"}
+                rel={
+                  social.platform === "Email"
+                    ? undefined
+                    : "noopener noreferrer"
+                }
                 className="w-12 h-12 rounded-full bg-card shadow-card hover:shadow-float hover:bg-primary hover:text-white flex items-center justify-center transition-all hover:scale-110 border border-border/50"
                 aria-label={social.platform}
               >
-                <Icon className="w-5 h-5" />
+                <Icon className="w-5 h-5 pointer-events-none" />
               </a>
             );
           })}

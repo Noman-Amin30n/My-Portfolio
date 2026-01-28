@@ -79,7 +79,7 @@ export default function StatsSection() {
               {/* Main Visual */}
               <div className="relative w-full aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 to-lavender/30 shadow-float">
                 <Image
-                  src="/images/stats-image.png" // User will update this manually
+                  src="/images/stats-image-3.png" // User will update this manually
                   alt="Stats Image"
                   fill
                   className="object-contain object-bottom"

@@ -33,7 +33,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand Column */}
           <div>
-            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent">
+            <h3 className="text-2xl font-bold mb-4 bg-linear-to-r from-primary to-primary-light bg-clip-text text-transparent">
               {personalInfo.name.split(" ")[0]}
             </h3>
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
@@ -71,12 +71,16 @@ export default function Footer() {
                   <a
                     key={social.platform}
                     href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    target={social.platform === "Email" ? undefined : "_blank"}
+                    rel={
+                      social.platform === "Email"
+                        ? undefined
+                        : "noopener noreferrer"
+                    }
                     className="w-10 h-10 rounded-full bg-primary/10 hover:bg-primary hover:text-white flex items-center justify-center transition-all hover:scale-110"
                     aria-label={social.platform}
                   >
-                    <Icon className="w-5 h-5" />
+                    <Icon className="w-5 h-5 pointer-events-none" />
                   </a>
                 );
               })}

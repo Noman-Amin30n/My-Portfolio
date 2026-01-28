@@ -145,7 +145,7 @@ export default function HeroSection() {
               <div className="relative z-10 w-[400px] h-[400px] mx-auto">
                 <div className="flex items-end w-full h-full rounded-3xl bg-gradient-to-br from-primary/20 to-lavender/30 backdrop-blur-sm shadow-float">
                   <Image
-                    src="/images/hero-bg.png" // User will update this manually
+                    src="/images/hero-bg-2.png" // User will update this manually
                     alt={personalInfo.name}
                     width={500}
                     height={500}
