@@ -6,7 +6,7 @@ export const services: Service[] = [
     title: "Full-Stack Web Development",
     description:
       "Building complete web applications from frontend to backend, with clean architecture, scalable code, and modern technologies like React, Next.js, Express, and MongoDB.",
-    icon: "💻",
+    icon: "/services_animated_icons/Full-stack-development.webm",
     features: [
       "Modern React & Next.js applications",
       "RESTful API design and development",
@@ -22,7 +22,7 @@ export const services: Service[] = [
     title: "Frontend UI Development",
     description:
       "Creating beautiful, intuitive user interfaces with attention to detail, accessibility, and performance. Specialized in React, TypeScript, and modern CSS frameworks.",
-    icon: "🎨",
+    icon: "/services_animated_icons/fronten_UI.webm",
     features: [
       "Component-based architecture",
       "Responsive design implementation",
@@ -37,7 +37,7 @@ export const services: Service[] = [
     title: "AI-Powered Web Features",
     description:
       "Integrating intelligent features into web applications using agentic and generative AI systems. Building AI-driven experiences with modern tools and prompt engineering.",
-    icon: "🤖",
+    icon: "/services_animated_icons/AI-powered-web-apps.webm",
     features: [
       "Agentic AI integration",
       "Vercel AI SDK implementation",
@@ -53,7 +53,7 @@ export const services: Service[] = [
     title: "Backend API Development",
     description:
       "Designing and building robust backend systems and RESTful APIs with Node.js, Express, and MongoDB. Focus on security, scalability, and clean architecture.",
-    icon: "⚙️",
+    icon: "/services_animated_icons/Backend_API.webm",
     features: [
       "RESTful API architecture",
       "Authentication & authorization",
@@ -68,7 +68,7 @@ export const services: Service[] = [
     title: "UI Animation & Interactions",
     description:
       "Enhancing user experiences with smooth, purposeful animations and micro-interactions using GSAP, Framer Motion, and modern CSS techniques.",
-    icon: "✨",
+    icon: "/services_animated_icons/UI_Animations.webm",
     features: [
       "GSAP scroll-based animations",
       "Framer Motion interactions",

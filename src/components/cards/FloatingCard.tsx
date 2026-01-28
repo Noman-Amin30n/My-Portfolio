@@ -41,9 +41,16 @@ export default function FloatingCard({
         {(title || icon) && (
           <CardHeader>
             {icon && (
-              <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">
-                {icon}
-              </div>
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-[120px] h-auto rounded-lg"
+              >
+                <source src={icon} type="video/webm" />
+                Your browser does not support the video tag.
+              </video>
             )}
             {title && <CardTitle>{title}</CardTitle>}
             {description && (

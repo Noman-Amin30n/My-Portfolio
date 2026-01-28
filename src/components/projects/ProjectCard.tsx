@@ -127,7 +127,11 @@ const CardContent = ({
 
       {/* Hover Overlay */}
       <div
-        className={`absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/40 to-transparent transition-opacity duration-300 ${isHovered ? "opacity-100" : "opacity-0"}`}
+        className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-all duration-300 z-30 ${
+          isHovered
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
       >
         <div className="absolute bottom-4 left-4 right-4 flex gap-2">
           {project.github && (

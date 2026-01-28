@@ -24,7 +24,7 @@ export default function ServicesList() {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Left - Icon & Title */}
                 <div className="space-y-4">
-                  <div className="text-6xl">{service.icon}</div>
+                  {/* <div className="text-6xl">{service.icon}</div> */}
                   <h3 className="text-2xl font-bold text-foreground">
                     {service.title}
                   </h3>
@@ -33,6 +33,16 @@ export default function ServicesList() {
                       ⭐ Popular
                     </span>
                   )}
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-[150px] h-auto mx-auto rounded-lg"
+                  >
+                    <source src={service.icon} type="video/webm" />
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
 
                 {/* Middle - Description */}

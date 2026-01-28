@@ -43,17 +43,17 @@ export const skills: Skill[] = [
 export const skillCategories = {
   frontend: {
     title: "Frontend Technologies",
-    icon: "🎨",
+    icon: "/services_animated_icons/fronten_UI.webm",
     emoji: "💻",
   },
   backend: {
     title: "Backend & Databases",
-    icon: "⚙️",
+    icon: "/services_animated_icons/Backend_API.webm",
     emoji: "🗄️",
   },
   ai: {
     title: "AI & Modern Tooling",
-    icon: "🤖",
+    icon: "/services_animated_icons/AI-powered-web-apps.webm",
     emoji: "🧠",
   },
   tools: {

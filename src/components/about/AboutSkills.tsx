@@ -39,8 +39,17 @@ export default function AboutSkills() {
                 transition={{ duration: 0.5, delay: catIndex * 0.1 }}
                 className="bg-card rounded-2xl p-8 shadow-card border border-border/50"
               >
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="text-3xl">{category.emoji}</span>
+                <div className="flex flex-col gap-3 mb-6">
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-[150px] h-auto rounded-lg"
+                  >
+                    <source src={category.icon} type="video/webm" />
+                    Your browser does not support the video tag.
+                  </video>
                   <h3 className="text-2xl font-bold text-foreground">
                     {category.title}
                   </h3>
