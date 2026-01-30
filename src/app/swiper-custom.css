@@ -14,18 +14,33 @@
   height: 40px;
   border-radius: 50%;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 50; /* Top-most layer for interaction */
+  cursor: pointer;
+  pointer-events: auto;
+  color: var(--swiper-navigation-color); /* Default arrow color */
 }
 
-.project-swiper:hover .swiper-button-prev,
-.project-swiper:hover .swiper-button-next {
+/* Hover state for the button circle */
+.project-swiper .swiper-button-prev:hover,
+.project-swiper .swiper-button-next:hover {
+  background: var(--swiper-navigation-color);
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+  color: white; /* Change arrow color to white on hover */
+}
+
+/* Use group-hover from ProjectCard to show buttons */
+.group:hover .project-swiper .swiper-button-prev,
+.group:hover .project-swiper .swiper-button-next {
   opacity: 1;
 }
 
 .project-swiper .swiper-button-prev:after,
 .project-swiper .swiper-button-next:after {
-  font-size: 12px !important;
+  font-size: 14px !important;
   font-weight: bold;
+  transition: color 0.3s ease;
 }
 
 .project-swiper .swiper-navigation-icon {
@@ -36,6 +51,7 @@
 
 .project-swiper .swiper-pagination {
   bottom: 10px;
+  z-index: 40; /* Higher than hover overlay (z-30) */
 }
 
 .project-swiper .swiper-pagination-bullet {

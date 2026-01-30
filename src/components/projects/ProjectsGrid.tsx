@@ -13,7 +13,6 @@ export default function ProjectsGrid() {
     { id: "ai", label: "AI" },
     { id: "fullstack", label: "Full-Stack" },
     { id: "frontend", label: "Frontend" },
-    { id: "web-app", label: "Web Apps" },
   ];
 
   const filteredProjects =

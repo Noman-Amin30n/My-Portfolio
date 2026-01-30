@@ -1,17 +1,27 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, Github, Calendar } from "lucide-react";
+import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { Button } from "@/components/ui/button";
 import type { Project } from "@/data/types";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 interface ProjectDetailProps {
   project: Project;
 }
 
 export default function ProjectDetail({ project }: ProjectDetailProps) {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div className="bg-background">
       {/* Hero Section */}
@@ -82,14 +92,68 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="aspect-video bg-gradient-to-br from-primary/20 via-peach/20 to-lavender/30 rounded-2xl shadow-float flex items-center justify-center"
+            className="group aspect-video bg-gradient-to-br from-primary/20 via-peach/20 to-lavender/30 rounded-2xl shadow-float overflow-hidden flex items-center justify-center relative"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
-            <div className="text-9xl">
-              {project.category === "ai" && "🤖"}
-              {project.category === "fullstack" && "💻"}
-              {project.category === "frontend" && "🎨"}
-              {project.category === "web-app" && "🌐"}
-            </div>
+            {project.images && project.images.length > 1 ? (
+              <Swiper
+                modules={[Navigation, Pagination, Autoplay]}
+                navigation
+                pagination={{ clickable: true }}
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: true,
+                  pauseOnMouseEnter: true,
+                }}
+                loop={true}
+                className="h-full w-full project-swiper"
+              >
+                {project.images.map((image, idx) => (
+                  <SwiperSlide key={idx}>
+                    <div className="relative w-full h-full overflow-hidden rounded-2xl">
+                      <Image
+                        src={image}
+                        alt={`${project.title} - Image ${idx + 1}`}
+                        fill
+                        className="object-cover transform-gpu group-hover:scale-110 transition-transform duration-500 ease-out"
+                        sizes="(max-width: 1024px) 100vw, 1024px"
+                        unoptimized
+                        quality={100}
+                        style={{ backfaceVisibility: "hidden" }}
+                      />
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            ) : project.images && project.images.length === 1 ? (
+              <div className="relative w-full h-full overflow-hidden rounded-2xl">
+                <Image
+                  src={project.images[0]}
+                  alt={project.title}
+                  fill
+                  className="object-cover transform-gpu group-hover:scale-110 transition-transform duration-500 ease-out"
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                  priority
+                  quality={100}
+                  style={{ backfaceVisibility: "hidden" }}
+                />
+              </div>
+            ) : (
+              <div className="text-9xl">
+                {project.category === "ai" && "🤖"}
+                {project.category === "fullstack" && "💻"}
+                {project.category === "frontend" && "🎨"}
+                {project.category === "web-app" && "🌐"}
+              </div>
+            )}
+
+            {/* Dark Gradient Overlay */}
+            <div
+              className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-all duration-300 z-30 pointer-events-none ${
+                isHovered ? "opacity-100" : "opacity-0"
+              }`}
+            />
           </motion.div>
         </div>
       </section>
